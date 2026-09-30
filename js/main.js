@@ -65,8 +65,8 @@ function initCountdown() {
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-  // Tanggal acara: 3 Oktober 2026, 10:00 WIB (UTC+7)
-  const targetDate = new Date('2026-10-03T10:00:00+07:00').getTime();
+    // Tanggal acara: 31 Desember 2026, 10:00 WIB (UTC+7)
+  const targetDate = new Date('2026-12-31T10:00:00+07:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();

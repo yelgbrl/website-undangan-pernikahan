@@ -114,7 +114,10 @@ a {
   inset: 0;
   z-index: 1000;
   background-color: var(--color-bg-primary);
-  background-image: radial-gradient(circle at center, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+    background-image: url('../assets/cover.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,6 +135,16 @@ a {
 .cover-content {
   max-width: 480px;
   width: 100%;
+}
+
+.cover-box {
+  padding: var(--spacing-lg) var(--spacing-md);
+  background-color: rgba(252, 251, 249, 0.78);
+  border: 1px solid rgba(197, 160, 89, 0.6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-float);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 
 .welcome-text {

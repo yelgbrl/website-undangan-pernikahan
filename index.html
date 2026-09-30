@@ -37,6 +37,18 @@
   <button id="btn-audio" class="btn-audio hidden" aria-label="Kontrol Audio Musik">
     <span id="audio-icon" class="material-symbols-outlined">music_note</span>
   </button>
+  
+    <!-- Popup Notifikasi RSVP -->
+  <div id="rsvp-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <span class="material-symbols-outlined">check</span>
+      </div>
+      <h3 id="rsvp-modal-title" class="modal-title">Terima Kasih!</h3>
+      <p class="modal-text">Konfirmasi kehadiran Anda berhasil terkirim.</p>
+      <button type="button" id="btn-modal-close" class="btn-primary">Tutup</button>
+    </div>
+  </div>
 
   <!-- Konten Utama -->
   <div id="main-content" class="main-content-locked">
@@ -173,6 +185,52 @@
           <span class="material-symbols-outlined">map</span>
           Buka Google Maps
         </a>
+      </div>
+    </section>
+
+        <!-- RSVP / Konfirmasi Kehadiran -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="container text-center">
+        <h2 class="section-title">Konfirmasi Kehadiran</h2>
+        <p class="section-subtitle">Mohon konfirmasi kehadiran Anda agar kami dapat mempersiapkan acara dengan sebaik-baiknya.</p>
+
+        <form id="rsvp-form" class="rsvp-form" novalidate>
+          <div class="form-group">
+            <label for="rsvp-name">Nama</label>
+            <input type="text" id="rsvp-name" name="name" placeholder="Nama lengkap Anda" required>
+          </div>
+
+          <div class="form-group">
+            <span class="form-label">Konfirmasi Kehadiran</span>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="attendance" value="Hadir" required>
+                <span>Hadir</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="attendance" value="Tidak Hadir">
+                <span>Tidak Hadir</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="guest-group">
+            <label for="rsvp-guests">Jumlah Tamu</label>
+            <input type="number" id="rsvp-guests" name="guests" min="1" value="1" inputmode="numeric" placeholder="Contoh: 2">
+          </div>
+
+          <div class="form-group">
+            <label for="rsvp-message">Pesan untuk Mempelai</label>
+            <textarea id="rsvp-message" name="message" rows="4" placeholder="Tuliskan doa dan ucapan Anda"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <span class="material-symbols-outlined">send</span>
+            Kirim Konfirmasi
+          </button>
+
+          <p id="rsvp-status" class="rsvp-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 

@@ -430,6 +430,215 @@ a {
 }
 
 /* ==========================================
+   RSVP SECTION
+   ========================================== */
+.rsvp-section {
+  background-color: var(--color-bg-primary);
+}
+
+.rsvp-form {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group label,
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-bottom: var(--spacing-xs);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 0 3px var(--color-accent-gold-soft);
+}
+
+/* Sembunyikan panah spinner bawaan pada input angka */
+.form-group input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Pilihan Hadir / Tidak Hadir */
+.radio-group {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.radio-option {
+  flex: 1;
+  margin-bottom: 0 !important;
+  cursor: pointer;
+  position: relative;
+}
+
+.radio-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-option span {
+  display: block;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.radio-option input:checked + span {
+  background-color: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
+  color: var(--color-text-light);
+}
+
+.radio-option input:focus-visible + span {
+  box-shadow: 0 0 0 3px var(--color-accent-gold-soft);
+}
+
+/* Tombol kirim & status */
+.rsvp-form .btn-primary {
+  width: 100%;
+  margin-top: var(--spacing-xs);
+}
+
+.rsvp-status {
+  margin-top: var(--spacing-sm);
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  color: var(--color-text-muted);
+}
+
+.rsvp-status.error {
+  color: #b3413a;
+}
+
+.rsvp-status.success {
+  color: var(--color-accent-gold-hover);
+}
+
+.form-group.hidden {
+  display: none;
+}
+
+/* ==========================================
+   RSVP MODAL (POPUP NOTIFIKASI)
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-overlay);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-float);
+  text-align: center;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-overlay.show .modal-box {
+  transform: translateY(0) scale(1);
+}
+
+.modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--spacing-md);
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent-gold-soft);
+  color: var(--color-accent-gold);
+}
+
+.modal-icon .material-symbols-outlined {
+  font-size: 2.5rem;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-accent-gold);
+  margin-bottom: var(--spacing-xs);
+}
+
+.modal-text {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ==========================================
    BUTTONS & FLOATING AUDIO CONTROLLER
    ========================================== */
 .btn-primary, .btn-secondary {

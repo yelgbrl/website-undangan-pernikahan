@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initInvitation();
   initAudioPlayer();
   initCountdown();
+  initRSVP();
 });
 
 function initInvitation() {
@@ -92,4 +93,91 @@ function initCountdown() {
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+}
+
+function initRSVP() {
+  const form = document.getElementById('rsvp-form');
+  const nameInput = document.getElementById('rsvp-name');
+  const guestGroup = document.getElementById('guest-group');
+  const guestInput = document.getElementById('rsvp-guests');
+  const statusEl = document.getElementById('rsvp-status');
+  const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+
+  const modal = document.getElementById('rsvp-modal');
+  const btnModalClose = document.getElementById('btn-modal-close');
+
+    if (!form || !nameInput || !guestGroup || !guestInput || !statusEl || !modal || !btnModalClose) return;
+
+  function openModal() {
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    btnModalClose.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  btnModalClose.addEventListener('click', closeModal);
+
+  // Tutup saat klik area gelap di luar kotak popup
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  // Tutup dengan tombol Esc
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  function showStatus(text, type) {
+    statusEl.textContent = text;
+    statusEl.className = 'rsvp-status' + (type ? ' ' + type : '');
+  }
+
+  function getAttendance() {
+    const checked = document.querySelector('input[name="attendance"]:checked');
+    return checked ? checked.value : '';
+  }
+
+  // Sembunyikan Jumlah Tamu jika memilih "Tidak Hadir"
+  attendanceRadios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      guestGroup.classList.toggle('hidden', getAttendance() === 'Tidak Hadir');
+      showStatus('', '');
+    });
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const attendance = getAttendance();
+    const guests = parseInt(guestInput.value, 10);
+
+    // Validasi sederhana
+    if (!nameInput.value.trim()) {
+      showStatus('Mohon isi nama Anda.', 'error');
+      nameInput.focus();
+      return;
+    }
+
+    if (!attendance) {
+      showStatus('Mohon pilih Hadir atau Tidak Hadir.', 'error');
+      return;
+    }
+
+    if (attendance === 'Hadir' && (!Number.isInteger(guests) || guests < 1)) {
+      showStatus('Jumlah tamu minimal 1 orang.', 'error');
+      guestInput.focus();
+      return;
+    }
+
+    // Notifikasi berhasil (tanpa mengirim data ke mana pun)
+    showStatus('', '');
+    openModal();
+
+    form.reset();
+    guestGroup.classList.remove('hidden');
+  });
 }
